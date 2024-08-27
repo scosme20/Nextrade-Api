@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { getUserByRole } from '../services/AuthService.js';
+import { getUserByRole } from '../Services/AuthService.js';
 
 export const authenticate = async (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];

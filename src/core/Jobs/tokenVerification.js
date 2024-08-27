@@ -1,4 +1,4 @@
-import { verifyToken } from '../utils/jwtUtils.js';
+import { verifyToken } from '../Utils/jwtUtils.js';
 
 export const checkTokenValidity = (token) => {
   try {
