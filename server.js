@@ -1,29 +1,8 @@
-import express from 'express';
+import app from './app.js';
 import dotenv from 'dotenv';
-import sequelize from './config/Database/Database.js';
-import authRoutes from './src/Routes/Auth/authRoutes.js';
-import catalogRoutes from './src/Routes/catalogue/catalogueRoutes.js';
-import productRoutes from './src/Routes/product/productRoutes.js';
-import orderRoutes from './src/Routes/order/order.js';
-import demandRoutes from './src/Routes/Demand/demmandRoutes.js';
-import swaggerSetup from './Config/swagger/swagger.js'; // Importa o arquivo de configuração do Swagger
+import sequelize from './Config/Database/Database.js';
 
 dotenv.config();
-
-const app = express();
-
-// Middleware
-app.use(express.json());
-
-// Rotas
-app.use('/api/auth', authRoutes);
-app.use('/api/', catalogRoutes);
-app.use('/api/', productRoutes);
-app.use('/api/', orderRoutes);
-app.use('/api/', demandRoutes); // Certifique-se de que a rota demand está correta
-
-// Configuração do Swagger
-swaggerSetup(app);
 
 const PORT = process.env.PORT || 3001;
 
@@ -46,6 +25,7 @@ sequelize.authenticate()
   .catch(err => {
     console.error('Falha ao conectar ao banco de dados:', err);
   });
+
 
 
 

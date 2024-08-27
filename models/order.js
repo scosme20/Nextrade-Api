@@ -1,6 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
-import Client from './Client';
+import Client from './client';
 import Seller from './Seller';
 import Product from './Product';
 
@@ -31,7 +31,6 @@ Order.init({
   timestamps: true,
 });
 
-// Associações
 Order.belongsTo(Client, { foreignKey: 'clientId' });
 Order.belongsTo(Seller, { foreignKey: 'sellerId' });
 Order.belongsTo(Product, { foreignKey: 'productId' });

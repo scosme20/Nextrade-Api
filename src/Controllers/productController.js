@@ -1,4 +1,3 @@
-// controllers/ProductController.js
 import Product from '../Modules/product/product.js';
 
 class ProductController {
