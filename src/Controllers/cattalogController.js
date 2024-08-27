@@ -1,4 +1,4 @@
-import Demand from '../modules/demand/demandModel.js';
+import Demand from '../Modules/demand/demandModel.js';
 import Product from '../Modules/product/product.js';
 
 export const getCatalog = async (req, res) => {
