@@ -3,10 +3,9 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    const tableDefinition = await queryInterface.describeTable('Orders');
-
-    // Verifica se a coluna 'sellerId' já existe
-    if (!tableDefinition.sellerId) {
+    // Verificar se a coluna já existe
+    const tableInfo = await queryInterface.describeTable('Orders');
+    if (!tableInfo.sellerId) {
       await queryInterface.addColumn('Orders', 'sellerId', {
         type: Sequelize.INTEGER,
         references: {
@@ -23,4 +22,3 @@ module.exports = {
     await queryInterface.removeColumn('Orders', 'sellerId');
   }
 };
-

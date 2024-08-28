@@ -3,11 +3,13 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    const tableDefinition = await queryInterface.describeTable('Products');
+    const table = 'Products';
+    const column = 'sellerId';
 
-    // Verifica se a coluna 'sellerId' já existe
-    if (!tableDefinition.sellerId) {
-      await queryInterface.addColumn('Products', 'sellerId', {
+    // Verifica se a coluna já existe
+    const tableColumns = await queryInterface.describeTable(table);
+    if (!tableColumns[column]) {
+      await queryInterface.addColumn(table, column, {
         type: Sequelize.INTEGER,
         references: {
           model: 'Sellers',
@@ -23,5 +25,3 @@ module.exports = {
     await queryInterface.removeColumn('Products', 'sellerId');
   }
 };
-
-
