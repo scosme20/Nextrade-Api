@@ -8,12 +8,12 @@ import {
 
 const router = express.Router();
 
-router.post('/', createProfileController);
+router.post('/profile', createProfileController);
 
-router.get('/:id', getProfileController);
+router.get('/profile/:id', getProfileController);
 
-router.put('/:id', updateProfileController);
+router.put('/profile/:id', updateProfileController);
 
-router.delete('/:id', deleteProfileController);
+router.delete('/profile/:id', deleteProfileController);
 
 export default router;

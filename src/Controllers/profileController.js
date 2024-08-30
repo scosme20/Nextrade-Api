@@ -13,7 +13,7 @@ export const createProfileController = async (req, res) => {
 export const getProfileController = async (req, res) => {
   try {
     const { id } = req.params;
-    const role = req.query.role; // Supondo que o papel seja passado como um parâmetro de consulta
+    const role = req.query.role;
 
     if (!role) {
       return res.status(400).json({ message: 'Role is required' });
