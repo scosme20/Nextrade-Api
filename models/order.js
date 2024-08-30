@@ -1,12 +1,7 @@
-import { Model, DataTypes } from 'sequelize';
-import sequelize from '../config/database';
-import Client from './client';
-import Seller from './Seller';
-import Product from './Product';
+import { DataTypes } from 'sequelize';
+import sequelize from '../Config/Database/Database.js';
 
-class Order extends Model {}
-
-Order.init({
+const Orders = sequelize.define('Orders', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -15,24 +10,44 @@ Order.init({
   quantity: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    validate: {
+      min: 1,
+    },
   },
   totalPrice: {
     type: DataTypes.FLOAT,
     allowNull: false,
+    validate: {
+      min: 0,
+    },
   },
-  status: {
-    type: DataTypes.STRING,
+  clientId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'Clients',
+      key: 'id',
+    },
     allowNull: false,
-    defaultValue: 'pending',
+  },
+  sellerId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'Sellers',
+      key: 'id',
+    },
+    allowNull: false,
+  },
+  productId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'Products',
+      key: 'id',
+    },
+    allowNull: false,
   },
 }, {
-  sequelize,
-  modelName: 'Order',
   timestamps: true,
+  paranoid: true,
 });
 
-Order.belongsTo(Client, { foreignKey: 'clientId' });
-Order.belongsTo(Seller, { foreignKey: 'sellerId' });
-Order.belongsTo(Product, { foreignKey: 'productId' });
-
-export default Order;
+export default Orders;

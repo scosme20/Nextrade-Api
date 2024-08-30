@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../../../Config/Database/Database.js';
-import Order from '../order/order.js';
+import Orders from '../order/order.js';
 
-const Client = sequelize.define('Client', {
+const Clients = sequelize.define('Clients', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -38,6 +38,6 @@ const Client = sequelize.define('Client', {
   paranoid: false,
 });
 
-Client.hasMany(Order, { foreignKey: 'clientId' });
+Clients.hasMany(Orders, { foreignKey: 'clientId' });
 
-export default Client;
+export default Clients;

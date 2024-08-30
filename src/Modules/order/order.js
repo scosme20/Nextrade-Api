@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../../../Config/Database/Database.js';
 
-const Order = sequelize.define('Order', {
+const Orders = sequelize.define('Orders', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -24,7 +24,7 @@ const Order = sequelize.define('Order', {
   clientId: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'Client',
+      model: 'Clients',
       key: 'id',
     },
     allowNull: false,
@@ -50,4 +50,4 @@ const Order = sequelize.define('Order', {
   paranoid: true,
 });
 
-export default Order;
+export default Orders;

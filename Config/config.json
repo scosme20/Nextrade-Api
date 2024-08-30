@@ -1,24 +1,32 @@
 {
   "development": {
-    "username": "root",
-    "password": "b5d9f8h7",
-    "database": "nextradeconnect",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "dbnextradeconnect_user",
+    "password": "LcXdvdVlq2zkp6gAUhxjzx7ZijM5mZqe",
+    "database": "dbnextradeconnect",
+    "host": "dpg-cr8rugij1k6c73f810b0-a.ohio-postgres.render.com",
+    "port": 5432,
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   },
   "test": {
-    "username": "root",
-    "password": "b5d9f8h7",
-    "database": "nextradeconnect",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "dbnextradeconnect_user",
+    "password": "LcXdvdVlq2zkp6gAUhxjzx7ZijM5mZqe",
+    "database": "dbnextradeconnect",
+    "host": "dpg-cr8rugij1k6c73f810b0-a.ohio-postgres.render.com",
+    "port": 5432,
+    "dialect": "postgres"
   },
   "production": {
-    "username": "root",
-    "password": "b5d9f8h7",
-    "database": "nextradeconnect",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "dbnextradeconnect_user",
+    "password": "LcXdvdVlq2zkp6gAUhxjzx7ZijM5mZqe",
+    "database": "dbnextradeconnect",
+    "host": "dpg-cr8rugij1k6c73f810b0-a.ohio-postgres.render.com",
+    "port": 5432,
+    "dialect": "postgres"
   }
 }
-

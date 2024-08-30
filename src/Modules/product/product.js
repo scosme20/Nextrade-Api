@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../../../Config/Database/Database.js';
 
-const Product = sequelize.define('Product', {
+const Products = sequelize.define('Products', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -50,4 +50,4 @@ const Product = sequelize.define('Product', {
   paranoid: true,
 });
 
-export default Product;
+export default Products;

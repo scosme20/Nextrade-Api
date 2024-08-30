@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../../../Config/Database/Database.js';
 
-const Supplier = sequelize.define('Supplier', {
+const Suppliers = sequelize.define('Suppliers', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -32,4 +32,4 @@ const Supplier = sequelize.define('Supplier', {
   paranoid: false,
 });
 
-export default Supplier;
+export default Suppliers;
