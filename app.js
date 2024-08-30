@@ -5,6 +5,7 @@ import catalogRoutes from './src/Routes/catalogue/catalogueRoutes.js';
 import productRoutes from './src/Routes/product/productRoutes.js';
 import orderRoutes from './src/Routes/order/order.js';
 import demandRoutes from './src/Routes/Demand/demmandRoutes.js';
+import profileRoutes from './src/Routes/profile/profileRoutes.js';
 import swaggerSetup from './Config/swagger/swagger.js';
 import './Config/index.js'
 
@@ -25,6 +26,7 @@ app.use('/api/', catalogRoutes);
 app.use('/api/', productRoutes);
 app.use('/api/', orderRoutes);
 app.use('/api/', demandRoutes);
+app.use('/api/', profileRoutes)
 
 swaggerSetup(app);
 
