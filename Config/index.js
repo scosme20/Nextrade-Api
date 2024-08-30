@@ -1,5 +1,5 @@
 import sequelize from './Database/Database.js';
-import User from '../src/Modules/user/UserModule.js';
+import User from '../src/Modules/User/UserModule.js';
 import Client from '../src/Modules/client/clientModel.js';
 import Seller from '../src/Modules/sellers/sellerModel.js';
 import Product from '../src/Modules/product/product.js';
