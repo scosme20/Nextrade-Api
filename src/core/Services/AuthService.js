@@ -4,6 +4,7 @@ import Client from '../../Modules/client/clientModel.js';
 import Seller from '../../Modules/sellers/sellerModel.js';
 import Supplier from '../../Modules/supplier/supplierModel.js';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 const secretKey = process.env.JWT_SECRET;
@@ -17,16 +18,23 @@ export const register = async (userData) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   try {
+    let user;
     switch (role) {
       case 'supplier':
-        return await Supplier.create({ ...userData, password: hashedPassword });
+        user = await Supplier.create({ ...userData, password: hashedPassword });
+        break;
       case 'seller':
-        return await Seller.create({ ...userData, password: hashedPassword });
+        user = await Seller.create({ ...userData, password: hashedPassword });
+        break;
       case 'client':
-        return await Client.create({ ...userData, password: hashedPassword });
+        user = await Client.create({ ...userData, password: hashedPassword });
+        break;
       default:
         throw new Error('Invalid role');
     }
+    const token = jwt.sign({ id: user.id, role }, secretKey, { expiresIn: '1h' });
+
+    return { token, user };
   } catch (error) {
     throw new Error(`Registration failed: ${error.message}`);
   }
@@ -51,6 +59,7 @@ export const login = async (email, password, role, identifier) => {
 
     if (user && await bcrypt.compare(password, user.password)) {
       const token = jwt.sign({ id: user.id, role }, secretKey, { expiresIn: '1h' });
+
       return { token, user };
     }
     throw new Error('Invalid credentials');

@@ -12,7 +12,7 @@ module.exports = {
           key: 'id',
         },
         allowNull: false,
-        onDelete: 'CASCADE', // Define a ação de exclusão para CASCADE
+        onDelete: 'CASCADE',
       });
     }
   },

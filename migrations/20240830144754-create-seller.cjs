@@ -23,10 +23,10 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      role: { // Adicionado campo role para definir o papel do vendedor
+      role: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: 'seller', // Valor padrão se aplicável
+        defaultValue: 'seller',
       },
       createdAt: {
         type: Sequelize.DATE,
