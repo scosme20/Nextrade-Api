@@ -29,7 +29,7 @@ const Seller = sequelize.define('Seller', {
   },
 }, {
   timestamps: true,
-  paranoid: true,
+  paranoid: false,
 });
 
 export default Seller;

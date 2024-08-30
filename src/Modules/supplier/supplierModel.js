@@ -29,7 +29,7 @@ const Supplier = sequelize.define('Supplier', {
   },
 }, {
   timestamps: true,
-  paranoid: true,
+  paranoid: false,
 });
 
 export default Supplier;

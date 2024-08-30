@@ -35,7 +35,7 @@ const Client = sequelize.define('Client', {
   },
 }, {
   timestamps: true,
-  paranoid: true,
+  paranoid: false,
 });
 
 Client.hasMany(Order, { foreignKey: 'clientId' });
