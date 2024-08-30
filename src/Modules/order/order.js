@@ -2,12 +2,32 @@ import { DataTypes } from 'sequelize';
 import sequelize from '../../../Config/Database/Database.js';
 
 const Order = sequelize.define('Order', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  quantity: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    validate: {
+      min: 1,
+    },
+  },
+  totalPrice: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+    validate: {
+      min: 0,
+    },
+  },
   clientId: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'Clients',
+      model: 'Client',
       key: 'id',
     },
+    allowNull: false,
   },
   sellerId: {
     type: DataTypes.INTEGER,
@@ -15,6 +35,7 @@ const Order = sequelize.define('Order', {
       model: 'Sellers',
       key: 'id',
     },
+    allowNull: false,
   },
   productId: {
     type: DataTypes.INTEGER,
@@ -22,22 +43,11 @@ const Order = sequelize.define('Order', {
       model: 'Products',
       key: 'id',
     },
-  },
-  quantity: {
-    type: DataTypes.INTEGER,
     allowNull: false,
-  },
-  totalPrice: {
-    type: DataTypes.FLOAT,
-    allowNull: false,
-  },
-  status: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    defaultValue: 'pending',
   },
 }, {
   timestamps: true,
+  paranoid: true,
 });
 
 export default Order;

@@ -3,38 +3,25 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Demands', {
+    await queryInterface.createTable('Suppliers', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      description: {
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      password: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      quantity: {
-        type: Sequelize.INTEGER,
+      cnpj: {
+        type: Sequelize.STRING,
         allowNull: false,
-      },
-      supplierId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Suppliers',
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      },
-      // Nova coluna para associar demanda a um vendedor ou cliente
-      userId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Users',
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
+        unique: true,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -50,7 +37,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Demands');
+    await queryInterface.dropTable('Suppliers');
   }
 };
-

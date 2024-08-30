@@ -2,8 +2,8 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Suppliers', {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('Sellers', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -18,10 +18,15 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      cnpj: {
+      registrationNumber: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
+      },
+      role: { // Adicionado campo role para definir o papel do vendedor
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: 'seller', // Valor padrão se aplicável
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -36,8 +41,7 @@ module.exports = {
     });
   },
 
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Suppliers');
-  }
+  down: async (queryInterface) => {
+    await queryInterface.dropTable('Sellers');
+  },
 };
-

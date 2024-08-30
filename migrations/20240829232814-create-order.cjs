@@ -3,36 +3,34 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Products', {
+    await queryInterface.createTable('Orders', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      name: {
-        type: Sequelize.STRING,
+      quantity: {
+        type: Sequelize.INTEGER,
         allowNull: false,
+        validate: {
+          min: 1,
+        },
       },
-      description: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      price: {
+      totalPrice: {
         type: Sequelize.FLOAT,
         allowNull: false,
+        validate: {
+          min: 0,
+        },
       },
-      stock: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      supplierId: {
+      clientId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Suppliers',
+          model: 'Clients',  
           key: 'id',
         },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
+        allowNull: false,
+        onDelete: 'CASCADE',
       },
       sellerId: {
         type: Sequelize.INTEGER,
@@ -40,14 +38,17 @@ module.exports = {
           model: 'Sellers',
           key: 'id',
         },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      },
-      // Nova coluna para distinguir o tipo de produto
-      productType: {
-        type: Sequelize.ENUM('client', 'vendor'),
         allowNull: false,
-        defaultValue: 'client',
+        onDelete: 'CASCADE',
+      },
+      productId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Products',
+          key: 'id',
+        },
+        allowNull: false,
+        onDelete: 'CASCADE',
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -63,7 +64,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Products');
+    await queryInterface.dropTable('Orders');
   }
 };
-
